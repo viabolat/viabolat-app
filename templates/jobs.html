@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Feed | Viabolat</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Live job feed</p>
+      <h1>Latest roles</h1>
+      <p>Fresh postings ingested from curated sources.</p>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <main class="jobs">
+    {% for job in jobs %}
+    <article class="job-card">
+      <div class="job-meta">
+        <p class="eyebrow">{{ job.source_name }}</p>
+        <h2>{{ job.title }}</h2>
+        <p class="company">{{ job.company }}</p>
+        <p class="location">{{ job.location }}</p>
+      </div>
+      <p class="description">{{ job.description }}</p>
+      <div class="job-footer">
+        <span>Posted {{ job.posted_at[:10] if job.posted_at else 'N/A' }}</span>
+        <a href="{{ job.source_url }}" target="_blank" rel="noopener">View source</a>
+      </div>
+    </article>
+    {% else %}
+    <p>No jobs available yet. Try running the ingestion pipeline.</p>
+    {% endfor %}
+  </main>
+</body>
+</html>

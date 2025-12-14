@@ -1,5 +1,112 @@
 body {
-  font-family: sans-serif;
-  padding: 2rem;
-  background-color: #f5f5f5;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+  background-color: #f8fafc;
+}
+
+.hero {
+  padding: 3rem clamp(1.5rem, 2vw, 3rem);
+  background: linear-gradient(120deg, #0ea5e9, #7c3aed);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.hero h1 {
+  margin: 0.25rem 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.hero p {
+  margin: 0.25rem 0 1.5rem;
+  max-width: 48ch;
+  color: #e2e8f0;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  background: white;
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+}
+
+.button.ghost {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem clamp(1.5rem, 2vw, 3rem);
+}
+
+.features article {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.jobs {
+  padding: 2rem clamp(1.5rem, 2vw, 3rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.job-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.job-card h2 {
+  margin: 0.25rem 0;
+}
+
+.job-card .company {
+  font-weight: 600;
+  color: #0ea5e9;
+}
+
+.job-card .location {
+  color: #475569;
+}
+
+.job-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: #475569;
+}
+
+.job-footer a {
+  color: #0ea5e9;
+  font-weight: 600;
+  text-decoration: none;
 }
