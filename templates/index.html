@@ -6,7 +6,30 @@
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>Welcome to Viabolat</h1>
-  <p>Fast dashboards for your business.</p>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Job intelligence, simplified</p>
+      <h1>Fresh job feeds from hundreds of sources</h1>
+      <p>Continuous aggregation, deduplication, and normalization delivered as a subscription.</p>
+      <div class="cta-row">
+        <a class="button" href="/jobs">View live feed</a>
+        <a class="button ghost" href="/api/jobs">API preview</a>
+      </div>
+    </div>
+  </header>
+  <section class="features">
+    <article>
+      <h2>Continuous ingestion</h2>
+      <p>Pulls from RSS, sitemaps, APIs, and JS-rendered pages with rate limits and retries.</p>
+    </article>
+    <article>
+      <h2>Duplicate-safe</h2>
+      <p>Hashes normalized fields and updates existing listings to avoid noisy results.</p>
+    </article>
+    <article>
+      <h2>Admin friendly</h2>
+      <p>Toggle sources, re-run pipelines, and inspect failures from a single console.</p>
+    </article>
+  </section>
 </body>
 </html>

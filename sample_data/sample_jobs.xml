@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Viabolat Demo Jobs</title>
+    <link>https://example.com/jobs</link>
+    <description>Demo feed for local ingestion</description>
+    <item>
+      <title>Senior Data Engineer</title>
+      <author>Acme Robotics</author>
+      <link>https://example.com/jobs/senior-data-engineer</link>
+      <pubDate>Mon, 18 Nov 2024 10:00:00 GMT</pubDate>
+      <description>Build and optimize data pipelines for analytics and ML workloads.</description>
+      <category>Remote</category>
+    </item>
+    <item>
+      <title>Fullstack Developer</title>
+      <author>Blue Ocean Labs</author>
+      <link>https://example.com/jobs/fullstack-developer</link>
+      <pubDate>Tue, 19 Nov 2024 14:30:00 GMT</pubDate>
+      <description>Work across frontend and backend to ship product features.</description>
+      <category>San Francisco, CA</category>
+    </item>
+    <item>
+      <title>Site Reliability Engineer</title>
+      <author>Northwind Systems</author>
+      <link>https://example.com/jobs/site-reliability-engineer</link>
+      <pubDate>Wed, 20 Nov 2024 09:15:00 GMT</pubDate>
+      <description>Improve reliability, observability, and on-call practices.</description>
+      <category>Austin, TX</category>
+    </item>
+  </channel>
+</rss>
