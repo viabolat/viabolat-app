@@ -1,14 +1,11 @@
 from __future__ import annotations
 
-import logging
 import os
 from flask import Flask, jsonify, render_template
 
 from database import get_connection
 from ingestion import ingest_sources, init_db
 
-
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 app = Flask(__name__)
 
@@ -46,17 +43,6 @@ def api_jobs():
         ).fetchall()
     payload = [dict(row) for row in jobs]
     return jsonify(payload)
-
-
-@app.route("/healthz")
-def healthz():
-    """Lightweight health probe for load balancers."""
-    try:
-        with get_connection() as conn:
-            conn.execute("SELECT 1")
-    except Exception:
-        return jsonify({"status": "unhealthy"}), 503
-    return jsonify({"status": "ok"})
 
 
 if __name__ == "__main__":

@@ -4,10 +4,7 @@ import datetime as dt
 import os
 import time
 import xml.etree.ElementTree as ET
-import urllib.error
-import urllib.parse
-import urllib.request
-from typing import Iterable, List
+from typing import Iterable
 
 from database import ensure_db, get_connection
 from models import Job, Source
@@ -27,23 +24,10 @@ def init_db() -> None:
             )
 
 
-def load_feed(source: Source) -> List[ET.Element]:
+def load_feed(source: Source) -> Iterable[ET.Element]:
     feed_url = source.feed_url
-    parsed = urllib.parse.urlparse(feed_url)
-
-    try:
-        if parsed.scheme in {"http", "https"}:
-            with urllib.request.urlopen(feed_url, timeout=10) as response:
-                payload = response.read()
-            root = ET.fromstring(payload)
-        else:
-            tree = ET.parse(feed_url)
-            root = tree.getroot()
-    except (OSError, urllib.error.URLError, ET.ParseError) as exc:  # pragma: no cover - exercised in integration
-        print(f"Failed to load feed from {feed_url}: {exc}")
-        return []
-
-    return root.findall(".//item")
+    tree = ET.parse(feed_url)
+    return tree.findall(".//item")
 
 
 def _entry_to_job(entry: ET.Element, source: Source) -> Job:
@@ -144,16 +128,8 @@ def ingest_sources() -> int:
             enabled=bool(row[4]),
             last_run_at=row[5],
         )
-
-        try:
-            entries = load_feed(source)
-            if not entries:
-                print(f"No entries found for source {source.name}; skipping")
-                continue
-            total_created += upsert_jobs(entries, source)
-        except Exception as exc:  # pragma: no cover - defensive logging
-            print(f"Error ingesting source {source.name}: {exc}")
-
+        entries = load_feed(source)
+        total_created += upsert_jobs(entries, source)
     return total_created
 
 
