@@ -5,18 +5,12 @@ import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 
-DB_ENV_KEY = "DATABASE_URL"
+DB_PATH = os.getenv("DATABASE_URL", "viabolat.db")
 
 
-def get_db_path() -> str:
-    """Return the configured database path, defaulting to a local SQLite file."""
-    return os.getenv(DB_ENV_KEY, "viabolat.db")
-
-
-def ensure_db(db_path: str | None = None) -> None:
-    path = db_path or get_db_path()
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    with get_connection(path) as conn:
+def ensure_db() -> None:
+    Path(DB_PATH).parent.mkdir(parents=True, exist_ok=True)
+    with get_connection() as conn:
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS sources (
@@ -48,10 +42,8 @@ def ensure_db(db_path: str | None = None) -> None:
 
 
 @contextmanager
-def get_connection(db_path: str | None = None):
-    path = db_path or get_db_path()
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
+def get_connection():
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     try:
         yield conn
